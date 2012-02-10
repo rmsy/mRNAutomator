@@ -1,6 +1,6 @@
 #!/bin/bash
 #mRNAutomator by Isaac Moore
-#02/09/2012
+#02/10/2012
 
 #==FUNCTIONS==
 
@@ -8,10 +8,10 @@
 sanatize() {
 case "${dna}" in
 *[^agtc]*)
-  clear
-  echo "Invalid sequence"
-  exit 0
-  ;;
+  clear
+  echo "Invalid sequence"
+  exit 0
+  ;;
 esac
 length=${#dna}
 if [ "$length" != "3" ]; then
@@ -19,6 +19,11 @@ if [ "$length" != "3" ]; then
 	echo "Invalid sequence"
 	exit 0
 fi
+}
+
+#Function to calculate the reverse DNA pair
+dnaCalc() {
+dnaPair=$(tr agtcAGTC TCAGTCAG <<< "$dna")
 }
 
 #Function to calculate the mRNA sequence from the given DNA sequence
@@ -30,71 +35,71 @@ mRNA=$(tr agtcAGTC UCAGUCAG <<< "$dna")
 calcAminoAcid() {
 case "$mRNA" in
 UUU|UUC)
-  aminoAcid="Phenylalanine"
-  ;;
+  aminoAcid="Phenylalanine"
+  ;;
 UUA|UUG)
-  aminoAcid="Leucine"
-  ;;
+  aminoAcid="Leucine"
+  ;;
 UC*|AGU|AGC)
-  aminoAcid="Serine"
-  ;;
+  aminoAcid="Serine"
+  ;;
 UAU|UAC)
-  aminoAcid="Tyrosine"
-  ;;
+  aminoAcid="Tyrosine"
+  ;;
 UAA|UAG|UGA)
-  aminoAcid="Stop Codon"
-  ;;
+  aminoAcid="Stop Codon"
+  ;;
 UGU|UGC)
-  aminoAcid="Cysteine"
-  ;;
+  aminoAcid="Cysteine"
+  ;;
 UGG)
-  aminoAcid="Tryptophan"
-  ;;
+  aminoAcid="Tryptophan"
+  ;;
 CU*)
-  aminoAcid="Leucine"
-  ;;
+  aminoAcid="Leucine"
+  ;;
 CC*)
-  aminoAcid="Proline"
-  ;;
+  aminoAcid="Proline"
+  ;;
 CAU|CAC)
-  aminoAcid="Histidine"
-  ;;
+  aminoAcid="Histidine"
+  ;;
 CAA|CAG)
-  aminoAcid="Glutamine"
-  ;;
+  aminoAcid="Glutamine"
+  ;;
 CG*|AGA|AGG)
-  aminoAcid="Arginine"
-  ;;
+  aminoAcid="Arginine"
+  ;;
 AUU|AUC|AUA)
-  aminoAcid="Isoleucine"
-  ;;
+  aminoAcid="Isoleucine"
+  ;;
 AUG)
-  aminoAcid="Methionine"
-  ;;
+  aminoAcid="Methionine"
+  ;;
 AC*)
-  aminoAcid="Threonine"
-  ;;
+  aminoAcid="Threonine"
+  ;;
 AAU|AAC)
-  aminoAcid="Asparagine"
-  ;;
+  aminoAcid="Asparagine"
+  ;;
 AAA|AAG)
-  aminoAcid="Lysine"
-  ;;
+  aminoAcid="Lysine"
+  ;;
 GU*)
-  aminoAcid="Valine"
-  ;;
+  aminoAcid="Valine"
+  ;;
 GC*)
-  aminoAcid="Alanine"
-  ;;
+  aminoAcid="Alanine"
+  ;;
 GAU|GAC)
-  aminoAcid="Aspartic Acid"
-  ;;
+  aminoAcid="Aspartic Acid"
+  ;;
 GAA|GAG)
-  aminoAcid="Glutamic Acid"
-  ;;
+  aminoAcid="Glutamic Acid"
+  ;;
 GG*)
-  aminoAcid="Glycine"
-  ;;
+  aminoAcid="Glycine"
+  ;;
 esac
 }
 
@@ -115,4 +120,6 @@ calcAminoAcid
 echo "Amino Acid pair:" ${aminoAcid}
 calcTRNA
 echo "tRNA Sequence:" ${tRNA}
+dnaCalc
+echo "DNA Pair Sequence:" ${dnaPair}
 exit 1
