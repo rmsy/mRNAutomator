@@ -1,8 +1,25 @@
 #!/bin/bash
 #mRNAutomator by Isaac Moore
-#02/08/12
+#02/09/2012
 
 #==FUNCTIONS==
+
+#Function to sanitize the entered DNA sequence
+sanatize() {
+case "${dna}" in
+*[^agtc]*)
+  clear
+  echo "Invalid sequence"
+  exit 0
+  ;;
+esac
+length=${#dna}
+if [ "$length" != "3" ]; then
+	clear
+	echo "Invalid sequence"
+	exit 0
+fi
+}
 
 #Function to calculate the mRNA sequence from the given DNA sequence
 calcMRNA() {
@@ -89,14 +106,8 @@ tRNA=$(tr acgtT ACGUU <<< "$dna")
 
 #==END FUNCTIONS==
 echo "==mRNAutomator=="
-
-#Request a DNA sequence and sanitize it
 read -p "Please enter a DNA strand: " dna
-length=${#dna}
-if [ "$length" != "3" ]; then
-	echo "Invalid sequence."
-	exit 0
-fi
+sanatize
 calcMRNA
 clear
 echo "mRNA Sequence:" ${mRNA}
