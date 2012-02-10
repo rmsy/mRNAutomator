@@ -1,7 +1,7 @@
 mRNAutomator
 ===========
 
-mRNAutomator is a Bash script that will return the mRNA sequence, tRNA sequence, and Amino Acid pair for any given DNA sequence.
+mRNAutomator is a Bash script that will return the mRNA sequence, tRNA sequence, DNA pair sequence, and Amino Acid pair for any given DNA sequence.
 
 Information
 -----------
