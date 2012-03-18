@@ -1,11 +1,11 @@
 #!/bin/bash
 #mRNAutomator by Isaac Moore
-#02/09/2012
+#03/18/2012
 
 #==FUNCTIONS==
 
 #Function to sanitize the entered DNA sequence
-sanatize() {
+sanitize() {
 case "${dna}" in
 *[^agtc]*)
   clear
@@ -107,7 +107,7 @@ tRNA=$(tr acgtT ACGUU <<< "$dna")
 #==END FUNCTIONS==
 echo "==mRNAutomator=="
 read -p "Please enter a DNA strand: " dna
-sanatize
+sanitize
 calcMRNA
 clear
 echo "mRNA Sequence:" ${mRNA}
