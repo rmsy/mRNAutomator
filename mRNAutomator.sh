@@ -10,14 +10,14 @@ case "${dna}" in
 *[^agtc]*)
   clear
   echo "Invalid sequence"
-  exit 0
+  exit 1
   ;;
 esac
 length=${#dna}
 if [ "$length" != "3" ]; then
 	clear
 	echo "Invalid sequence"
-	exit 0
+	exit 1
 fi
 }
 
@@ -115,4 +115,4 @@ calcAminoAcid
 echo "Amino Acid pair:" ${aminoAcid}
 calcTRNA
 echo "tRNA Sequence:" ${tRNA}
-exit 1
+exit 0
